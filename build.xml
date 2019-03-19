@@ -1,0 +1,155 @@
+<?xml version="1.0" encoding="utf-8"?>
+<project name="hibernte" basedir="." default="">
+    <property name="project.name"  	value="DCMDashboard"/>
+    <property name="build.dir"   	value="build"/>
+    <property name="dist.dir"   	value="dist"/>
+    <property name="src.dir" 		value="src"/>
+    <property name="web.dir" 		value="WebContent"/>
+
+    <property name="appserver.home" value="d:\apache-tomcat-6.0.35"/>
+    <property name="tomcat.manager.url" value="http://localhost:8080/manager"/>
+    <property name="tomcat.username" value="tomcat"/>
+    <property name="tomcat.password" value="tomcat"/>
+
+    <path id="classpath">
+        <fileset dir="lib">
+            <include name="*.jar"/>
+        </fileset>
+        <pathelement path="${build.dir}/classes"/>
+    </path>
+
+    <target name="clean" >
+        <delete dir="${build.dir}"/>
+    </target>
+
+    <target name="prepare" depends="clean">
+    	<mkdir dir="${build.dir}/classes"/>
+        <mkdir dir="${build.dir}/${project.name}"/>
+    	<mkdir dir="${build.dir}/${project.name}/FusionCharts"/>
+    	<mkdir dir="${build.dir}/${project.name}/FusionCharts/Data"/>
+    	<mkdir dir="${build.dir}/${project.name}/WEB-INF"/>
+        <mkdir dir="${build.dir}/${project.name}/WEB-INF/classes"/>
+        <mkdir dir="${build.dir}/${project.name}/WEB-INF/lib"/>
+        <mkdir dir="${build.dir}/${project.name}/WEB-INF/jsp"/>
+
+    </target>
+
+    <target name="copyJars">
+  	    <copy todir="${build.dir}/${project.name}/WEB-INF/lib">
+            <fileset dir="lib">
+                <include name="**/*.jar"/>
+            	<exclude name="servlet-api.jar" />
+            	<exclude name="jsp-api.jar" />
+                <include name="**/*.dtd"/>
+            </fileset>
+        </copy>
+    </target>
+
+    <target name="compile" depends="prepare">
+        <javac srcdir="${src.dir}" destdir="${build.dir}/${project.name}/WEB-INF/classes"
+            deprecation="true" optimize="true" failonerror="true">
+    	    <include name="**/*.java" />
+     	    <classpath refid="classpath"/>
+        </javac> 
+    </target>
+
+    <target name="build" depends="prepare,copyJars,compile">
+        <copy todir="${build.dir}/${project.name}/WEB-INF">
+            <fileset dir="${web.dir}/WEB-INF">
+                <include name="*.xml" />
+                <include name="*.tld" />
+            	<include name="*.js" />
+            </fileset>
+        </copy>
+
+        <copy todir="${build.dir}/${project.name}">
+            <fileset dir="${web.dir}">            
+                <include name="*.jsp" />
+            	<include name="*.js" />
+            	<include name="*.*" />
+            </fileset>
+        </copy>
+   
+        <copy todir="${build.dir}/${project.name}/WEB-INF/jsp">
+            <fileset dir="${web.dir}/WEB-INF/jsp">            
+                <include name="*.html" />
+                <include name="*.gif" />
+                <include name="*.jpg" />
+                <include name="*.jsp" />
+                <include name="*.xml" />
+                <include name="*.css" />
+            	<include name="*.js" />
+            </fileset>
+        </copy>  
+        <copy todir="${build.dir}/${project.name}/FusionCharts">
+                <fileset dir="${web.dir}/FusionCharts">
+                    <include name="**/*.*" />
+                </fileset>
+            </copy>
+        <copy todir="${build.dir}/${project.name}/img">
+              <fileset dir="${web.dir}/img">
+                  <include name="**/*.*" />
+              </fileset>
+          </copy>
+    	   <copy todir="${build.dir}/${project.name}/css">
+    	              <fileset dir="${web.dir}/css">
+    	                  <include name="**/*.*" />
+    	              </fileset>
+    	          </copy>
+        <copy todir="${build.dir}/${project.name}/WEB-INF/classes">
+            <fileset dir="${src.dir}">
+               <include name="**/*.properties" />
+               <include name="**/*.xml" />
+               <exclude name="**/*.java" />
+            </fileset>
+        </copy>
+        <copy todir="${build.dir}/classes">
+                <fileset dir="${build.dir}/${project.name}/WEB-INF/classes">
+                   <include name="**/*.*" />
+                </fileset>
+            </copy>
+    </target>	 
+
+    <target name="build.war" >
+        <delete dir="${dist.dir}"/>
+        <mkdir dir="${dist.dir}"/>
+        <jar destfile="${dist.dir}/${project.name}.war" basedir="${build.dir}/${project.name}"/>
+        
+    </target>
+
+	<target name="install" description="install web app">
+        <copy todir="${appserver.home}/webapps/${project.name}">
+            <fileset dir="${build.dir}/${project.name}">
+               <include name="**/*" />
+            </fileset>
+        </copy>
+        <delete dir="${dist.dir}" />
+    </target>
+
+    <target name="run" description="run the main class">
+        <copy todir="${build.dir}/${project.name}/WEB-INF/classes">
+            <fileset dir="${src.dir}">
+                <include name="*.xml" />
+                <include name="*.properties" />
+            </fileset>
+        </copy>
+        <copy todir="${build.dir}/${project.name}/WEB-INF/classes">
+            <fileset dir="${web.dir}/WEB-INF">
+                <include name="*.xml" />
+            </fileset>
+        </copy>
+    </target>
+
+    <taskdef name="reload" classname="org.apache.catalina.ant.ReloadTask">
+        <classpath>
+            <path location="${appserver.home}/lib/catalina-ant.jar"/>
+        </classpath>
+    </taskdef>
+    <target name="reload" description="Reload application in Tomcat">
+        <reload url="${tomcat.manager.url}"
+            username="${tomcat.username}"
+            password="${tomcat.password}"
+            path="/${project.name}"/>
+    </target>
+
+</project>

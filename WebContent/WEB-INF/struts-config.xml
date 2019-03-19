@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE struts-config PUBLIC
+    "-//Apache Software Foundation//DTD Struts Configuration 1.2//EN"
+    "http://jakarta.apache.org/struts/dtds/struts-config_1_2.dtd">
+
+<struts-config>
+
+    <!-- ======================================== Form Bean Definitions -->
+    <form-beans>
+
+        <form-bean name="addForm" type="org.apache.struts.validator.DynaValidatorForm">
+            <form-property name="prId" type="java.lang.String"/>  
+            <form-property name="prTitle" type="java.lang.String"/>
+            <form-property name="prTopimportance" type="java.lang.String"/>
+            <form-property name="prSeverity" type="java.lang.String"/>
+            <form-property name="prPriority" type="java.lang.String"/>
+            <form-property name="prState" type="java.lang.String"/>
+            <form-property name="prUpdate" type="java.lang.String"/>  
+            <form-property name="prRespperson" type="java.lang.String"/>
+            <form-property name="prAuthor" type="java.lang.String"/>
+            <form-property name="prAuthorgrp" type="java.lang.String"/>
+            <form-property name="prReportdate" type="java.lang.String"/>                    
+        </form-bean>
+    </form-beans>
+    
+
+    <global-exceptions>
+            <exception key="model"  
+                       type="com.nsn.dcm.team2.exception.DcmException"
+                       scope="request"
+                       path="/error.jsp"/>
+            <exception key="general"  
+                       type="java.lang.Exception"
+                       scope="request"
+                       path="/error.jsp"/> 
+    </global-exceptions>
+
+    <!-- =================================== Action Mapping Definitions -->
+    <action-mappings>
+    <action path="/addPronto" forward="/addProntoInfo.jsp"/>
+        <action path="/processAdd"
+                name="addForm"
+                scope="request"
+                validate="false"
+                input="input">
+                <forward name="input" path="/addProntoInfo.jsp"/>
+                <forward name="failure" path="/addProntoInfo.jsp"/>
+                <forward name="success" path="/index.jsp"/>
+        </action>
+
+        
+        <action path="/viewPronto" scope="request">
+            <forward name="viewPronto" path="/viewPronto.jsp"/>
+        </action>
+        <action path="/showGraph" scope="request">
+            <forward name="showGraph" path="/showallteamgraph.html"/>
+        </action>
+
+    </action-mappings>
+
+	<controller processorClass="org.springframework.web.struts.DelegatingRequestProcessor"
+                inputForward="true" />
+	<message-resources parameter="resource" />
+    <plug-in className="org.springframework.web.struts.ContextLoaderPlugIn">
+        <set-property property="contextConfigLocation" 
+            value="/WEB-INF/applicationContext.xml,
+                   /WEB-INF/daoContext.xml,
+                   /WEB-INF/action-servlet.xml"/>
+    </plug-in>
+	<plug-in className="org.apache.struts.validator.ValidatorPlugIn">
+		<set-property property="pathnames" value="/WEB-INF/validator-rules.xml,
+                                                 /WEB-INF/validation.xml" />
+		<set-property property="stopOnFirstError" value="true" />
+	</plug-in>
+
+</struts-config>
+
+

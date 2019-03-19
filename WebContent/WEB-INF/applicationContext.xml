@@ -1,0 +1,91 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE beans PUBLIC "-//SPRING//DTD BEAN//EN"
+    "http://www.springframework.org/dtd/spring-beans.dtd">
+
+<beans>
+	<bean id="dataSource" class="com.mchange.v2.c3p0.ComboPooledDataSource" destroy-method="close">
+		<property name="driverClass">
+            <value>com.mysql.jdbc.Driver</value>
+        </property>
+		<property name="jdbcUrl">
+            <value>jdbc:mysql://localhost:3306/dcmdashboard</value>
+        </property>
+		<property name="user">
+            <value>root</value>
+        </property>
+		<property name="password">
+            <value>root</value>
+        </property>
+		<property name="maxPoolSize">
+            <value>40</value>
+        </property>
+		<property name="minPoolSize">
+            <value>1</value>
+        </property>
+		<property name="initialPoolSize">
+            <value>2</value>
+        </property>
+		<property name="maxIdleTime">
+            <value>20</value>
+        </property>
+	</bean>
+
+    <bean id="sessionFactory" class="org.springframework.orm.hibernate3.LocalSessionFactoryBean">
+        <property name="dataSource">
+            <ref local="dataSource"/>
+        </property>
+        <property name="mappingResources">
+            <list>
+				<value>Pronto.hbm.xml</value>
+            </list>
+        </property>
+        <property name="hibernateProperties">
+            <props>
+                <prop key="hibernate.dialect">org.hibernate.dialect.MySQLDialect</prop>
+                <prop key="show_sql">true</prop>
+                <prop key="hibernate.hbm2ddl.auto">update</prop>
+                <prop key="hibernate.jdbc.batch_size">20</prop> 
+            </props>
+        </property>
+    </bean>
+
+    <bean id="transactionManager" class="org.springframework.orm.hibernate3.HibernateTransactionManager">
+        <property name="sessionFactory" ref="sessionFactory"/>
+    </bean>
+
+
+    <bean id="transactionInterceptor" class="org.springframework.transaction.interceptor.TransactionInterceptor">
+
+        <property name="transactionManager" ref="transactionManager"/>
+    	<property name="transactionAttributes">
+		
+		    <props>
+			    <prop key="get*">PROPAGATION_REQUIRED,readOnly</prop>
+		    	<prop key="*">PROPAGATION_REQUIRED</prop>
+		    </props>
+	    </property>
+	</bean>
+
+    <bean id="managerTemplate" abstract="true" lazy-init="true">
+        <property name="prontoDao">
+            <ref bean="prontoDao"/>
+        </property>
+	</bean>
+
+    <bean id="mgrManager" class="com.nsn.dcm.team2.struts.MgrManagerImpl" parent="managerTemplate"/>
+
+    <bean class="org.springframework.aop.framework.autoproxy.BeanNameAutoProxyCreator">
+	    <property name="beanNames">
+            <list>
+                <value>mgrManager</value>
+            </list>
+	    </property>
+        <property name="interceptorNames">
+            <list>
+                <value>transactionInterceptor</value> 
+            </list>
+        </property>
+    </bean>
+
+	
+</beans>

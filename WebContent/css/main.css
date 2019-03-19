@@ -1,0 +1,243 @@
+/* CSS Document */
+* {
+	text-align: center;
+	font-size: 12px;
+	color: #000;
+	font-family: Verdana, Arial, Helvetica, sans-serif;
+}
+a:link {
+	text-decoration: none;
+}
+
+a:visited {
+	text-decoration: none;
+}
+
+a:hover {
+	text-decoration: none;
+}
+
+a:active {
+	text-decoration: none;
+}
+body {
+	
+	padding: 0;
+	background-color: #FFFFFF;
+	scrollbar-face-color: #dff9fe;
+	scrollbar-highlight-color: #FFFFFF;
+	scrollbar-3dlight-color: #9adae7;
+	scrollbar-darkshadow-color: #9adae7;
+	scrollbar-Shadow-color: #FFFFFF;
+	scrollbar-arrow-color: #006498;
+	scrollbar-track-color: #fff;
+}
+
+
+
+img {
+	border: 0;
+}
+
+select {
+	font-size: 12px;
+}
+
+.redArrow {
+	background-image: url(../img/redArrow.gif);
+	width: 30px;
+	height: 24px;
+}
+
+.location {
+	background-image: url(../img/location.gif);
+	text-align: left;
+	padding-left: 5px;
+	line-height: 24px;
+}
+
+.locationRight {
+	background-image: url(../img/locationRight.gif);
+	width: 325px;
+	height: 24px;
+}
+
+.mainTable {
+	border: 1px solid #9cf;
+	background-image: url(../img/tableBottom.gif);
+	background-repeat: repeat-x;
+	background-position: bottom;
+	padding: 5px;
+	padding-top: 15px;
+}
+
+.formLeft {
+	background-color: #ededed;
+	height: 21px;
+	line-height: 21px;
+	text-align: right;
+	padding-right: 4px;
+}
+
+.formRight {
+	background-color: #fff;
+	height: 21px;
+	line-height: 21px;
+	text-align: left;
+	padding-left: 4px;
+}
+
+.btn {
+	background-image: url(../img/btn.gif);
+	width: 80px;
+	height: 21px;
+	border: 0;
+	line-height: 21px;
+	cursor: pointer;
+}
+
+.inputText {
+	border: 1px solid #ccc;
+	height: 19px;
+	padding-left: 2px;
+	line-height: 19px;
+	background: url(../img/inputtext_bg.gif) repeat-x;
+	color: #000;
+	text-align: left;
+}
+
+textarea {
+	border: 1px solid #ccc;
+	margin: 2px;
+	margin-left: 0;
+	padding: 2px;
+	color: #339900;
+	text-align: left;
+}
+
+input.onFocus,textarea.onFocus {
+	background-color: #fff;
+	border: 1px solid #6c3;
+	color: #390;
+}
+
+
+
+.result {
+	background-color: #fff;
+	height: 19px;
+	line-height: 19px;
+	text-align: center;
+}
+
+.pageTd {
+	text-align: right;
+	padding: 5px;
+	color: #039;
+}
+
+.btnGo {
+	background-image: url(../img/btn_go.gif);
+	width: 30px;
+	height: 21px;
+	border: 0;
+	line-height: 21px;
+	cursor: pointer;
+}
+
+a.page:link {
+	color: #039;
+	text-decoration: none;
+}
+
+a.page:visited {
+	color: #039;
+	text-decoration: none;
+}
+
+a.page:hover {
+	color: #f00;
+	text-decoration: underline;
+}
+
+.red {
+	color: #f00;
+	font-size: 12px;
+}
+
+.msgFalse {
+	background: #ffeeee url(../img/msgFalse.gif) no-repeat 30px 12px;
+	border: 1px solid #f07a7a;
+	height: 120px;
+}
+
+.msgFalse dt {
+	font-size: 14px;
+	font-weight: bold;
+	color: #e82900;
+	text-align: left;
+	padding-left: 120px;
+	padding-top: 12px;
+}
+
+.msgFalse dd {
+	margin: 0;
+	padding-top: 12px;
+	color: #e82900;
+	text-align: left;
+	padding-left: 120px;
+}
+
+.msgSuccess {
+	background: #f5ffeb url(../img/msgSuccess.gif) no-repeat 30px 12px;
+	border: 1px solid #5fb945;
+	height: 120px;
+}
+
+.msgSuccess dt {
+	font-size: 14px;
+	font-weight: bold;
+	color: #439506;
+	text-align: left;
+	padding-left: 120px;
+	padding-top: 12px;
+}
+
+.msgSuccess dd {
+	margin: 0;
+	padding-top: 12px;
+	color: #439506;
+	text-align: left;
+	padding-left: 120px;
+}
+
+.msgLookout {
+	background: #fff6eb url(../img/msgLookout.gif) no-repeat 30px 12px;
+	border: 1px solid #d8a751;
+	height: 120px;
+}
+
+.msgLookout dt {
+	font-size: 14px;
+	font-weight: bold;
+	color: #955d06;
+	text-align: left;
+	padding-left: 120px;
+	padding-top: 12px;
+}
+
+.msgLookout dd {
+	margin: 0;
+	padding-top: 12px;
+	color: #955d06;
+	text-align: left;
+	padding-left: 120px;
+}
+
+.welcomeWord {
+	background-color: #ccc;
+	text-align: left;
+	height: 25px;
+	line-height: 25px;
+	padding-left: 10px;
+}

@@ -1,0 +1,119 @@
+/* CSS Document */
+* {  
+    text-align:center;
+	margin:0;
+	font-size:12px;
+	color:#000;
+	font-family:Verdana, Arial, Helvetica, sans-serif;
+}
+body{
+ text-align:center;
+	margin:0;
+	font-size:12px;
+	color:#000;
+	font-family:Verdana, Arial, Helvetica, sans-serif;
+  overflow:hidden;
+  scrollbar-face-color:#dff9fe;
+  scrollbar-highlight-color:#FFFFFF;
+  scrollbar-3dlight-color:#9adae7;
+  scrollbar-darkshadow-color:#9adae7;
+  scrollbar-Shadow-color:#FFFFFF;
+  scrollbar-arrow-color:#006498;
+  scrollbar-track-color:#fff;}
+table {
+	border-collapse:collapse;
+}
+img{
+  border:0;}
+select{
+  font-size:12px;}
+a:link{
+  color:#fff;
+  text-decoration:none;}
+a:visited{
+  color:#fff;
+  text-decoration:none;}
+a:hover{
+  color:#fff;
+  text-decoration:underline;}
+#indexContainer {
+	width:100%;
+	height:100%;}
+.logo{
+  background-image:url(../img/logo.jpg);
+  width:204px;
+  height:70px;}
+.top{
+  background-image:url(../img/top.gif);
+  background-repeat:repeat-x;
+  height:41px;
+  text-align:left;
+  padding-left:5px;}
+.menu{
+  background-image:url(../img/menu.gif);
+  height:29px;
+  line-height:29px;
+  text-align:left;
+  padding-left:20px;}
+a.black:link{
+  color:#000;
+  text-decoration:none;}
+a.black:visited{
+  color:#000;
+  text-decoration:none;}
+a.black:hover{
+  color:#000;
+  text-decoration:underline;}
+.bar{
+  background-color:#003;
+  background-image:url(../img/bar.jpg);
+  background-repeat:repeat-y;
+  background-position:right;
+  height:19px;
+  line-height:19px;
+  text-align:right;
+  padding-right:20px;
+  color:#fff;}
+.systemInfo{
+  color:#fff;
+  text-align:left;
+  padding-left:10px;}
+.leftBar{
+  width:187px;
+  height:100%;
+  background-image:url(../img/left.gif);
+  background-repeat:repeat-y;}
+.bottom{
+  background-color:#2e52a1;
+  border-top:5px solid #003;
+  height:19px;
+  line-height:19px;
+  color:#fff;}
+#mainContent {
+	width:100%;
+	
+}
+#mainContent #leftBar {
+	width:208px;
+	vertical-align:top;
+}
+#mainContent #switchBar {
+	width:6px;
+	vertical-align:middle;
+	background-color:#003;
+}
+#mainContent #switchBar span, .switchArrowR {
+	cursor:pointer;
+	width:4px;
+	height:4px;
+	display:block;
+}
+#mainContent #switchBar span {
+	background-image:url(../img/arrow.gif);
+}
+#mainContent #switchBar .switchArrowR {
+	background-image:url(../img/arrowR.gif);
+}
+#mainContent #mFrame {
+	vertical-align:top;
+}

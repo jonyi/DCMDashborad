@@ -1,0 +1,43 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<!-- Generated Aug 21, 2012 2:05:08 PM by Hibernate Tools 3.4.0.CR1 -->
+<hibernate-mapping package="com.nsn.dcm.team2.model">
+    <class name="Pronto" table="info_pronto">
+
+        <id name="prId" type="string">
+            <column name="pr_id" length="50" not-null="true" />
+             <generator class="identity" />
+        </id>
+        <property name="prTitle" type="string">
+            <column name="pr_title" length="255"/>
+        </property>
+        <property name="prTopimportance" type="string">
+            <column name="pr_topimportance" length="16" />
+        </property>
+        <property name="prSeverity" type="string">
+            <column name="pr_severity" length="16" />
+        </property>
+        <property name="prPriority" type="string">
+            <column name="pr_priority" length="16" />
+        </property>
+        <property name="prState" type="string">
+            <column name="pr_state" length="16" />
+        </property>
+        <property name="prUpdate" type="string">
+            <column name="pr_update" length="8192" />
+        </property>
+        <property name="prRespperson" type="string">
+            <column name="pr_respperson" length="32" />
+        </property>
+        <property name="prAuthor" type="string">
+            <column name="pr_author" length="64" />
+        </property>
+        <property name="prAuthorgrp" type="string">
+            <column name="pr_authorgrp" length="64" />
+        </property>
+        <property name="prReportdate" type="string">
+            <column name="pr_reportdate" length="32" />
+        </property>
+    </class>
+</hibernate-mapping>

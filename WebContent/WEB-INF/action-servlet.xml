@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE beans PUBLIC "-//SPRING//DTD BEAN//EN"
+    "http://www.springframework.org/dtd/spring-beans.dtd">
+
+<beans>
+      
+    <bean name="mgrActionTemplate" abstract="true" singleton="false">
+        <property name="mgr">
+            <ref bean="mgrManager"/>
+        </property>
+    </bean>
+
+   <bean name="/processAdd" class="com.nsn.dcm.team2.struts.AddProntoInfoAction" parent="mgrActionTemplate"/>
+   <bean name="/viewPronto" class="com.nsn.dcm.team2.struts.ViewProntoAction" parent="mgrActionTemplate"/>
+   <bean name="/showGraph" class="com.nsn.dcm.team2.struts.ShowGraphAction" parent="mgrActionTemplate"/>
+
+</beans>

@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE beans PUBLIC "-//SPRING//DTD BEAN//EN"
+    "http://www.springframework.org/dtd/spring-beans.dtd">
+
+<beans>
+
+	<bean id="daoTemplate" abstract="true" lazy-init="true">
+		<property name="sessionFactory">
+            <ref bean="sessionFactory"/>
+        </property>
+	</bean>
+    <bean id="prontoDao" class="com.nsn.dcm.team2.dao.ProntoDaoHibernate" parent="daoTemplate"/>
+</beans>
